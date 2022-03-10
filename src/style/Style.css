@@ -1,0 +1,49 @@
+    .outline{
+      width: 100%;
+      height: 90px;
+      background-color: rgb(40,116,240);
+    }
+
+    .brandImageSize{
+      width: 118px;
+      height: 33px;
+      margin-top: 19px;
+      margin-left: 277px;
+    }
+
+    .slider{
+        position: relative;
+        height: 50vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image{
+        width: 1769px;
+    height: 373px;
+    border-radius: 10px;
+    }
+    
+    .right-arrow{
+        position:absolute;
+        top:50%;
+        right :32px;
+        font-size:3rem;
+        color: #0000;
+        z-index: 10;
+        cursor:pointer;
+        user-select: none;
+    }
+
+       
+    .left-arrow{
+        position:absolute;
+        top:50%;
+        left :32px;
+        font-size:3rem;
+        color: #0000;
+        z-index: 10;
+        cursor:pointer;
+        user-select: none;
+    }
