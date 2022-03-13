@@ -1,5 +1,5 @@
 import "../style/Style.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { images } from "../data";
 import {
   FaArrowAltCircleRight,
@@ -13,31 +13,29 @@ import { isGeneratorFunction } from "util/types";
 // interface productDetails{
 
 // }
-
-function ImageSlider() {
+const  ImageSlider:React.FC=()=> {
   let [currentImage, SetcurrentImage] = useState<number>(0);
-
+  const [productDetails,SetproductDetails]=useState<[{}]>()
   const PrevNextImages = (e: string) => {
     if (e === "next") {
       if (currentImage < images.length - 1) {
-        SetcurrentImage((currentImage = currentImage + 1));
+        SetcurrentImage((currentImage + 1));
       } else {
         SetcurrentImage(0);
       }
       return null;
     } else if (e === "prev") {
-      if (currentImage <= images.length - 1) {
-        SetcurrentImage((currentImage = currentImage - 1));
-      } else {
-        SetcurrentImage(images.length - 1);
+      if(currentImage===0){
+        SetcurrentImage(images.length-1)
       }
+     else if (currentImage <= images.length - 1) {
+        SetcurrentImage((currentImage - 1));
+      } 
     }
     return null;
   };
 
 
-
-  console.log(currentImage);
   return (
     <>
       <section className="slider">

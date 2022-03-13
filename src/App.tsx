@@ -1,14 +1,24 @@
+import React ,{ createContext,useContext, useState } from 'react';
 import Header from './components/Header';
-import ImageSlider from './components/ImageSlider';
 import Products from './components/products';
+import './style/Style.css'
+
+interface context {
+    a: ()=>{
+        
+    }
+}
 
 
-function App() {
+
+
+const  App:React.FC=()=> {
+
+
     return (<>
-           <Header/>
-           <ImageSlider/>
+           <Header/>         
            <Products/>
-        </>
+ </>
     );
 }
 

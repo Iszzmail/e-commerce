@@ -1,5 +1,9 @@
+import { useState } from "react";
 
-function Login() {
+const  Login:React.FC=()=> {
+    const[isLogin,setisLogin] = useState(false)
+
+    
     return (
         <div>
             

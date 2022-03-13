@@ -4,8 +4,9 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@mui/material";
 import "../style/Style.css";
+import ImageSlider from "../components/ImageSlider"
 
-const Header = () => {
+const Header:React.FC= () => {
   return (
     <>
       <div className={"outline"}>
@@ -71,7 +72,9 @@ const Header = () => {
             Login
           </Button>
         </span>
+       
       </div>
+      {/* <div><ImageSlider/></div> */}
       
     </>
   );

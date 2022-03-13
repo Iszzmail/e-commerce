@@ -1,49 +1,152 @@
-    .outline{
-      width: 100%;
-      height: 90px;
-      background-color: rgb(40,116,240);
-    }
+.outline {
+  width: 100%;
+  height: 90px;
+  background-color: rgb(40, 116, 240);
+}
 
-    .brandImageSize{
-      width: 118px;
-      height: 33px;
-      margin-top: 19px;
-      margin-left: 277px;
-    }
+.brandImageSize {
+  width: 118px;
+  height: 33px;
+  margin-top: 19px;
+  margin-left: 277px;
+}
 
-    .slider{
-        position: relative;
-        height: 50vh;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
+.slider {
+  position: relative;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .image{
-        width: 1769px;
-    height: 373px;
-    border-radius: 10px;
-    }
-    
-    .right-arrow{
-        position:absolute;
-        top:50%;
-        right :32px;
-        font-size:3rem;
-        color: #0000;
-        z-index: 10;
-        cursor:pointer;
-        user-select: none;
-    }
+.image {
+  width: 1769px;
+  height: 373px;
+  border-radius: 10px;
+}
 
-       
-    .left-arrow{
-        position:absolute;
-        top:50%;
-        left :32px;
-        font-size:3rem;
-        color: #0000;
-        z-index: 10;
-        cursor:pointer;
-        user-select: none;
-    }
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #0000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #0000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.divider {
+  width: 100%;
+  height: 90px;
+  background-color: white;
+  display:block
+}
+
+.productsName{
+  font-size: 23px;
+  font-weight: 584;
+  margin-top: 31px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 36px;
+}
+
+.box{
+  width: 300px;
+  border: 1px solid white;
+  padding: 5px;
+  margin: 30px;
+  display:inline-block
+}
+
+
+.currentProductImage{
+  width: 356px;
+  margin-left: 175px;
+  margin-top: 151px;
+}
+
+.currentProductCategory{
+  padding: 0;
+  line-height: 1.4;
+  font-size: 57px;
+  font-weight: inherit;
+  display: inline-block;
+  position: fixed;
+  margin-left: 197px;
+}
+
+.currentProductName{
+padding: 0;
+line-height: 1.4;
+font-size: 34px;
+font-weight: inherit;
+display: inline-block;
+position: fixed;
+margin-left: 244px;
+margin-top: 144px;
+align-items: center;
+}
+
+.currentProductSpecialPrice{
+  padding: 0;
+  line-height: 1.4;
+  font-size: 25px;
+  font-weight: inherit;
+  display: inline-block;
+  position: fixed;
+  margin-left: 244px;
+  margin-top: 211px;
+  align-items: center;
+  color: green;
+}
+
+.currentProductPrice{
+  padding: 0;
+  line-height: 1.4;
+  font-size: 40px;
+  font-weight: inherit;
+  display: inline-block;
+  position: fixed;
+  margin-left: 244px;
+  margin-top: 251px;
+  align-items: center;
+}
+
+.container {
+  padding: 0;
+  line-height: 1.4;
+  font-size: 40px;
+  font-weight: inherit;
+  display: inline-block;
+  position: fixed;
+  margin-left: 244px;
+  margin-top: 320px;
+  align-items: center;
+}
+
+
+.button {
+  padding: 0;
+  line-height: 1.4;
+  font-size: 40px;
+  font-weight: inherit;
+  display: inline-block;
+  position: fixed;
+  margin-left: 244px;
+  margin-top: 320px;
+  align-items: center;
+}
