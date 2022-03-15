@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "../style/Style.css";
 import CurrentProduct from './currentProduct'
+import { renderHeader } from "../App";
 
 interface Product {
   id: number;
@@ -12,21 +13,12 @@ interface Product {
     count: string;
   };
   title: string;
-}
-
-interface current{
-  id:number
-  image: string;
-  price: number;
-  description: string;
-  rating: {
-    rate: number;
-    count: string;
-  };
-  title: string;
-}
+} 
 
 const  Products:React.FC=(props)=> {
+
+  let contextData = React.useContext(renderHeader);
+
   const [productDetails, SetproductDetails] = useState<Product[]>();
   const [openProductPage, setopenProductPage] = useState(true);
   const [currentProductrender, SetcurrentProductrender] = useState<Product>();
@@ -43,7 +35,8 @@ const  Products:React.FC=(props)=> {
     let aa = Object.assign(data)
     SetcurrentProductrender(aa)
    console.log( currentProductrender?.id)
- 
+ contextData?.imageRenderSetter(false)
+ contextData?.image('ismail')
   };
 
   
@@ -52,6 +45,7 @@ console.log(currentProductrender)
   return (
     <>
       <div>
+        <h1>{contextData?.image}</h1>
         {openProductPage ? (
           productDetails &&
           productDetails.map((e, i) => {
@@ -70,7 +64,7 @@ console.log(currentProductrender)
           })
         ) : (
           <div>
-            <CurrentProduct a={currentProductrender}/>
+            <CurrentProduct data={currentProductrender}/>
          </div>
         )}
       </div>

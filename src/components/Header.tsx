@@ -4,9 +4,53 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@mui/material";
 import "../style/Style.css";
-import ImageSlider from "../components/ImageSlider"
+import ImageSlider from "../components/ImageSlider";
+import { useState,useContext } from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import React from "react";
+import { renderHeader } from "../App";
+const Header: React.FC = () => {
+  let contextData = React.useContext(renderHeader);
+  console.log(contextData)
 
-const Header:React.FC= () => {
+  const renderSlider=()=>{
+    if(contextData?.imageRenderValue===true){
+      console.log('trueeeeeeeeeeeeeeee')
+      return <ImageSlider/>
+    }
+    else if(contextData?.imageRenderValue===false){
+      console.log('false')
+      return null
+    }
+  }
+
+
+  const options = () => {
+    
+    return (
+      // <div>
+      //   {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
+      //   <Select
+      //     labelId="demo-simple-select-label"
+      //     id="demo-simple-select"
+      //     value={1}
+      //     label="Age"
+      //   >
+      //     <MenuItem value={10}>Ten</MenuItem>
+      //     <MenuItem value={20}>Twenty</MenuItem>
+      //     <MenuItem value={30}>Thirty</MenuItem>
+      //   </Select>
+      // </div>
+      <div>
+        <h1>ismail</h1>
+      </div>
+    );
+
+    
+  };
   return (
     <>
       <div className={"outline"}>
@@ -32,7 +76,6 @@ const Header:React.FC= () => {
             <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
-            
           </Paper>
         </span>
         <span>
@@ -58,7 +101,7 @@ const Header:React.FC= () => {
           <Button
             sx={{
               backgroundColor: "rgb(40,116,240);",
-              color: "#2874f0",
+              color: "white",
               height: "46px",
               fontWeight: "500",
               cursor: "pointer",
@@ -66,16 +109,17 @@ const Header:React.FC= () => {
               padding: "5px 40px",
               marginLeft: "11px",
             }}
-            variant="contained"
-          // onMouseOver={}
+            variant="text"
+            onMouseOver={options}
           >
-            Login
+            More
           </Button>
         </span>
-       
       </div>
-      {/* <div><ImageSlider/></div> */}
-      
+    <div>
+      {contextData?.imageRenderValue===true? <ImageSlider />:null}
+
+      </div>
     </>
   );
 };

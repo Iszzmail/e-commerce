@@ -20,26 +20,26 @@ interface current {
   title: string;
 }
 
-const CurrentProduct: React.FC<{ a: any }> = (props) => {
+const CurrentProduct: React.FC<{ data: any }> = (props) => {
   const [current, Setcurrent] = useState<current>();
 
   return (
     <div>
-      <img className={"currentProductImage"} src={props.a.image}></img>
+      <img className={"currentProductImage"} src={props.data.image}></img>
       <Button className={'button'} variant="contained">Add To Cart</Button>
       <button>Buy</button>  
-      <span className={"currentProductCategory"}>{props.a.category}</span>
+      <span className={"currentProductCategory"}>{props.data.category}</span>
       <span className={"currentProductName"}>
-        {props.a.title}{" "}
+        {props.data.title}{" "}
         <Rating
           name="half-rating"
-          defaultValue={props.a.rating.rate}
+          defaultValue={props.data.rating.rate}
           precision={0.1}
         />
       </span>
 
       <span className={"currentProductSpecialPrice"}>Special Price</span>
-      <span className={"currentProductPrice"}>${props.a.price}</span>
+      <span className={"currentProductPrice"}>${props.data.price}</span>
       <span className={"container"}>
         <span>
           <Accordion>
@@ -54,7 +54,7 @@ const CurrentProduct: React.FC<{ a: any }> = (props) => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <h3 style={{ color: "blue" }}>{props.a.description}</h3>
+                <h3 style={{ color: "blue" }}>{props.data.description}</h3>
               </Typography>
             </AccordionDetails>
           </Accordion>
