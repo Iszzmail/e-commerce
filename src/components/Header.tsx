@@ -12,20 +12,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import React from "react";
 import { renderHeader } from "../App";
+import SignUp from "./SignUp";
+
 const Header: React.FC = () => {
   let contextData = React.useContext(renderHeader);
   console.log(contextData)
 
-  const renderSlider=()=>{
-    if(contextData?.imageRenderValue===true){
-      console.log('trueeeeeeeeeeeeeeee')
-      return <ImageSlider/>
-    }
-    else if(contextData?.imageRenderValue===false){
-      console.log('false')
-      return null
-    }
-  }
+
 
 
   const options = () => {
@@ -53,7 +46,8 @@ const Header: React.FC = () => {
   };
   return (
     <>
-      <div className={"outline"}>
+
+       {contextData?.signUp===true?<SignUp/> :<> <div className={"outline"}>
         <span>
           <img
             className={"brandImageSize"}
@@ -98,6 +92,25 @@ const Header: React.FC = () => {
           </Button>
         </span>
         <span>
+          <Button onClick={()=>contextData?.TooglesignUp(true)}
+            sx={{
+              backgroundColor: "white",
+              color: "#2874f0",
+              height: "46psx",
+              fontWeight: "500",
+              cursor: "pointer",
+              borderRadius: "2px",
+              padding: "5px 40px",
+              border: "1px solid #dbdbdb",
+              marginLeft: "11px",
+              marginBottom: "px",
+            }}
+            variant="contained"
+          >
+            Sign up
+          </Button>
+        </span>
+        <span>
           <Button
             sx={{
               backgroundColor: "rgb(40,116,240);",
@@ -114,12 +127,27 @@ const Header: React.FC = () => {
           >
             More
           </Button>
+          <Button sx={{
+              backgroundColor: "white",
+              color: "#2874f0",
+              height: "46px",
+              fontWeight: "500",
+              cursor: "pointer",
+              borderRadius: "2px",
+              padding: "5px 40px",
+              border: "1px solid #dbdbdb",
+              marginLeft: "11px",
+              marginBottom: "px",
+            }}>{contextData&&contextData.itemsInCart}</Button>
         </span>
+
       </div>
     <div>
       {contextData?.imageRenderValue===true? <ImageSlider />:null}
-
+         
       </div>
+      </>
+}
     </>
   );
 };

@@ -34,9 +34,8 @@ const  Products:React.FC=(props)=> {
     setopenProductPage(false);
     let aa = Object.assign(data)
     SetcurrentProductrender(aa)
-   console.log( currentProductrender?.id)
  contextData?.imageRenderSetter(false)
- contextData?.image('ismail')
+
   };
 
   
@@ -45,7 +44,7 @@ console.log(currentProductrender)
   return (
     <>
       <div>
-        <h1>{contextData?.image}</h1>
+   
         {openProductPage ? (
           productDetails &&
           productDetails.map((e, i) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../style/Style.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
+import { renderHeader } from "../App";
 
 interface current {
   id: number;
@@ -21,13 +22,22 @@ interface current {
 }
 
 const CurrentProduct: React.FC<{ data: any }> = (props) => {
-  const [current, Setcurrent] = useState<current>();
+ 
+
+  const updateCart = React.useContext(renderHeader);
+
+  const AddingToCard = () => {
+   updateCart?.updatingCard(updateCart.itemsInCart+1)
+  };
+
 
   return (
     <div>
       <img className={"currentProductImage"} src={props.data.image}></img>
-      <Button className={'button'} variant="contained">Add To Cart</Button>
-      <button>Buy</button>  
+      <Button onClick={AddingToCard} className={"button"} variant="contained">
+        Add To Cart
+      </Button>
+      <button>Buy</button>
       <span className={"currentProductCategory"}>{props.data.category}</span>
       <span className={"currentProductName"}>
         {props.data.title}{" "}
