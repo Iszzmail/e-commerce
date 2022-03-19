@@ -190,6 +190,12 @@ a:active:hover {
   padding: 0 60px;
 }
 
+.absolute {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+}
+
 input {
   display: block;
   box-sizing: border-box;

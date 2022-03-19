@@ -3,6 +3,16 @@ import Header from "./components/Header";
 import Products from "./components/products";
 import "./style/Style.css";
 
+interface user{
+  
+    userID: string;
+    FirstName: string;
+    SecondName: string;
+    password: string;
+    cart: {};
+  }
+
+
 export const renderHeader = React.createContext<{
   imageRenderValue: boolean;
   imageRenderSetter: (imageRender: boolean) => void;
@@ -10,45 +20,84 @@ export const renderHeader = React.createContext<{
   updatingCard: (cart: number) => void;
   signUp: boolean;
   TooglesignUp: (change: boolean) => void;
-  UserName: string;
-  SetUserName: (name: string) => void;
-  password: string;
-  SetPassword: (name: string) => void;
-} | null>(null);
+  userDetails: {
+    userID: string;
+    FirstName: string;
+    SecondName: string;
+    password: string;
+    cart: {};
+  }[];
+  SetuserDetails: (
+    details: {
+      userID: string;
+      FirstName: string;
+      SecondName: string;
+      password: string;
+      cart: {};
+    }[]
+  ) => void;
+  login: boolean;
+  ToogleLoginn: (details: boolean) => void;
+  currentUser:{
+    userID: string;
+    FirstName: string;
+    SecondName: string;
+    password: string;
+    cart: {};
+  }[];
+ 
+}>({
+  imageRenderValue: false,
+  imageRenderSetter: (imageRender) => {},
+  itemsInCart: 0,
+  updatingCard: (cart) => {},
+  signUp: false,
+  TooglesignUp: (change) => {},
+  userDetails: [],
+  SetuserDetails: (details) => {},
+  login: false,
+  ToogleLoginn: (details) => {},
+  currentUser:[]
+  
+});
 
 export const App: React.FC = () => {
   const [imageRender, SetimageRender] = useState<boolean>(true);
   const [cart, Setcart] = useState<number>(0);
   const [ToogleSignUp, SetToogleSignUp] = useState<boolean>(false);
-  const [name, SetName] = useState<string>("");
-  const [userPassword, SetuserPassword] = useState<string>("");
+  const [users, Setusers] = useState<
+    {
+      userID: string;
+      FirstName: string;
+      SecondName: string;
+      password: string;
+      cart: {};
+    }[]
+  >([]);
+  const [ToogleLogIn, SetToogleLogIn] = useState<boolean>(false);
+  const currentUserDetails=[] as user[]
 
   return (
     <renderHeader.Provider
       //create a function to avoid repetation
       value={{
         imageRenderValue: imageRender, // to display the value
-        imageRenderSetter: (imageRender: any) => SetimageRender(imageRender), // to change the value
+        imageRenderSetter: (imageRender: boolean) =>
+          SetimageRender(imageRender), // to change the value
         itemsInCart: cart,
-        updatingCard: (num: any) => Setcart(num),
+        updatingCard: (num) => Setcart(num),
         signUp: ToogleSignUp,
-        TooglesignUp: (change) => SetToogleSignUp(change),
-        UserName: name,
-        SetUserName: SetName,
-        password: userPassword,
-        SetPassword: (change) => SetuserPassword(change),
+        TooglesignUp: SetToogleSignUp,
+        userDetails: users,
+        SetuserDetails: (details) => Setusers(details),
+        login: ToogleLogIn,
+        ToogleLoginn: (details) => SetToogleLogIn(details),
+        currentUser:currentUserDetails
+    
       }}
     >
-      <>
-        {ToogleSignUp === false ? (
-          <>
-            <Header />
-            <Products />
-          </>
-        ) : (
-          <Header />
-        )}
-      </>
+      <Header />
+      <Products />
     </renderHeader.Provider>
   );
 };

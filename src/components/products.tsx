@@ -15,7 +15,7 @@ interface Product {
   title: string;
 } 
 
-const  Products:React.FC=(props)=> {
+const  Products:React.FC=()=> {
 
   let contextData = React.useContext(renderHeader);
 
@@ -39,7 +39,6 @@ const  Products:React.FC=(props)=> {
   };
 
   
-console.log(currentProductrender)
 
   return (
     <>
@@ -49,7 +48,7 @@ console.log(currentProductrender)
           productDetails &&
           productDetails.map((e, i) => {
             return (
-              <span className={"box"} onClick={() => open(e)}>
+              <span key={i} className={"box"} onClick={() => open(e)}>
                 <img
                   style={{ width: "185px", display: "inline" }}
                   src={e.image}
