@@ -17,7 +17,18 @@ import Login from "./Login";
 
 const Header: React.FC = () => {
   let contextData = React.useContext(renderHeader);
-  console.log(contextData);
+  
+ console.log(contextData)
+
+ const logout=()=>{
+   contextData.SetcurrentUser({userID: '',
+   FirstName: '',
+   SecondName: '',
+   password: '',
+   cart: []
+ })
+ contextData.SetIsLoggedIn(false)
+ }
 
   const options = () => {
     return (
@@ -38,7 +49,8 @@ const Header: React.FC = () => {
           <Login />
         </div>
       )}
-      <>
+      <div>
+      
         <div className={"outline"}>
           <span>
             <img
@@ -64,6 +76,8 @@ const Header: React.FC = () => {
               </IconButton>
             </Paper>
           </span>
+         {contextData.isLoggedIn===false? <>
+
           <span>
             <Button
               onClick={() => contextData?.ToogleLoginn(true)}
@@ -104,6 +118,28 @@ const Header: React.FC = () => {
               Sign up
             </Button>
           </span>
+          </>:<span>
+            <span>{contextData.currentUser.FirstName} </span>
+            <span><Button
+              onClick={logout}
+              sx={{
+                backgroundColor: "white",
+                color: "#2874f0",
+                height: "46psx",
+                fontWeight: "500",
+                cursor: "pointer",
+                borderRadius: "2px",
+                padding: "5px 40px",
+                border: "1px solid #dbdbdb",
+                marginLeft: "11px",
+                marginBottom: "px",
+              }}
+              variant="contained"
+            >
+              Log out
+            </Button></span>
+            </span>}
+          </div>
           <span>
             <Button
               sx={{
@@ -143,7 +179,7 @@ const Header: React.FC = () => {
           {/* {contextData?.imageRenderValue===true? <ImageSlider />:null} */}
         </div>
       </>
-    </>
+   
   );
 };
 

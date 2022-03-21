@@ -3,7 +3,7 @@ import "../style/Style.css";
 import CurrentProduct from './currentProduct'
 import { renderHeader } from "../App";
 
-interface Product {
+export interface Product {
   id: number;
   image: string;
   price: number;
@@ -53,7 +53,7 @@ const  Products:React.FC=()=> {
                   style={{ width: "185px", display: "inline" }}
                   src={e.image}
                 />
-                <h3 className={"productsName"}>{e.title.slice(0, 10)}</h3>
+                 <h3 className={"productsName"}>{e.title.slice(0, 10)}</h3>
                 <span className={"productsName"}>${e.price}</span>
                 <h3 className={"productsName"}>Rating :{e.rating.rate}</h3>
                 <button>Buy</button>

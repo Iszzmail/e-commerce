@@ -22,21 +22,43 @@ interface current {
 }
 
 const CurrentProduct: React.FC<{ data: any }> = (props) => {
- 
-
   const updateCart = React.useContext(renderHeader);
 
-  const AddingToCard = () => {
-   updateCart?.updatingCard(updateCart.itemsInCart+1)
+  const AddingToCardNotLoggedIn = () => {
+    updateCart?.ToogleLoginn(true);
   };
 
+  const AddingToCardLoggedIn = () => {
+    updateCart?.updatingCard(updateCart.itemsInCart + 1);
+    updateCart.SetcurrentUser({
+      userID: updateCart.currentUser.userID,
+      FirstName: updateCart.currentUser.FirstName,
+      SecondName: updateCart.currentUser.SecondName,
+      password: updateCart.currentUser.password,
+      cart: []
+    })
+  };
 
   return (
     <div>
       <img className={"currentProductImage"} src={props.data.image}></img>
-      <Button onClick={AddingToCard} className={"button"} variant="contained">
-        Add To Cart
-      </Button>
+      {updateCart.isLoggedIn ? (
+        <Button
+          onClick={AddingToCardLoggedIn}
+          className={"button"}
+          variant="contained"
+        >
+          Add To Cart
+        </Button>
+      ) : (
+        <Button
+          onClick={AddingToCardNotLoggedIn}
+          className={"button"}
+          variant="contained"
+        >
+          Add To Cart
+        </Button>
+      )}
       <button>Buy</button>
       <span className={"currentProductCategory"}>{props.data.category}</span>
       <span className={"currentProductName"}>

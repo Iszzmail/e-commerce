@@ -1,17 +1,15 @@
 import React, { createContext, useContext, useState } from "react";
 import Header from "./components/Header";
-import Products from "./components/products";
+import Products, { Product } from "./components/products";
 import "./style/Style.css";
 
-interface user{
-  
-    userID: string;
-    FirstName: string;
-    SecondName: string;
-    password: string;
-    cart: {};
-  }
-
+interface user {
+  userID: string;
+  FirstName: string;
+  SecondName: string;
+  password: string;
+  cart: Array<Product>;
+}
 
 export const renderHeader = React.createContext<{
   imageRenderValue: boolean;
@@ -20,32 +18,16 @@ export const renderHeader = React.createContext<{
   updatingCard: (cart: number) => void;
   signUp: boolean;
   TooglesignUp: (change: boolean) => void;
-  userDetails: {
-    userID: string;
-    FirstName: string;
-    SecondName: string;
-    password: string;
-    cart: {};
-  }[];
+  userDetails: Array<user>;
   SetuserDetails: (
-    details: {
-      userID: string;
-      FirstName: string;
-      SecondName: string;
-      password: string;
-      cart: {};
-    }[]
+    details:Array<user>
   ) => void;
   login: boolean;
   ToogleLoginn: (details: boolean) => void;
-  currentUser:{
-    userID: string;
-    FirstName: string;
-    SecondName: string;
-    password: string;
-    cart: {};
-  }[];
- 
+  currentUser: user
+  SetcurrentUser: (current:user) => void;
+  isLoggedIn: boolean;
+  SetIsLoggedIn: (change: boolean) => void;
 }>({
   imageRenderValue: false,
   imageRenderSetter: (imageRender) => {},
@@ -57,25 +39,33 @@ export const renderHeader = React.createContext<{
   SetuserDetails: (details) => {},
   login: false,
   ToogleLoginn: (details) => {},
-  currentUser:[]
-  
+  currentUser: {
+    userID: "",
+    FirstName: "",
+    SecondName: "",
+    password: "",
+    cart: [],
+  },
+  SetcurrentUser: (current) => {},
+  isLoggedIn: false,
+  SetIsLoggedIn: (change: boolean) => {},
 });
 
 export const App: React.FC = () => {
   const [imageRender, SetimageRender] = useState<boolean>(true);
   const [cart, Setcart] = useState<number>(0);
   const [ToogleSignUp, SetToogleSignUp] = useState<boolean>(false);
-  const [users, Setusers] = useState<
-    {
-      userID: string;
-      FirstName: string;
-      SecondName: string;
-      password: string;
-      cart: {};
-    }[]
-  >([]);
+  const [users, Setusers] = useState<Array<user>>([]);
   const [ToogleLogIn, SetToogleLogIn] = useState<boolean>(false);
-  const currentUserDetails=[] as user[]
+
+  const [isLoggedIn, SetIsloggedIn] = useState<boolean>(false);
+  const [currentUser, SetcurrentUser] = useState<user>({
+    userID: "",
+    FirstName: "",
+    SecondName: "",
+    password: "",
+    cart: [],
+  });
 
   return (
     <renderHeader.Provider
@@ -92,8 +82,10 @@ export const App: React.FC = () => {
         SetuserDetails: (details) => Setusers(details),
         login: ToogleLogIn,
         ToogleLoginn: (details) => SetToogleLogIn(details),
-        currentUser:currentUserDetails
-    
+        currentUser: currentUser,
+        SetcurrentUser: (user) => SetcurrentUser(user),
+        isLoggedIn: isLoggedIn,
+        SetIsLoggedIn: (change) => SetIsloggedIn(change),
       }}
     >
       <Header />

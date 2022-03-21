@@ -1,34 +1,95 @@
 import { renderHeader } from "../App";
 import React, { useState } from "react";
-import SignUp from "./SignUp";
+import { positions } from "@mui/system";
+import { Product } from "./products";
 
 const Login: React.FC = () => {
   let storeUserDetails = React.useContext(renderHeader);
 
   const [loginUserName, setLoginUserName] = useState<string>("");
   const [loginUserPassword, setLoginUserPassword] = useState<string>("");
-  const [showSignup, setShowSignUp] = useState<boolean>(false);
-
-  console.log(loginUserPassword);
-
-  const validateUser = () => {
-    storeUserDetails.userDetails.map((e) => {
-      if (e.userID.includes(loginUserName)) {
-        console.log("there");
-        storeUserDetails.currentUser.push(e)
-      } else {
-        setShowSignUp(true);
-      }
-    });
-
+  let flag: boolean;
+  let flag2: boolean;
+  let current: {
+    userID: string;
+    FirstName: string;
+    SecondName: string;
+    password: string;
+    cart: Array<Product>;
   };
+  const validateUser = () => {
+    if (storeUserDetails.userDetails.length === 0) {
+      alert("Please signup");
+      storeUserDetails.TooglesignUp(true);
+      storeUserDetails.ToogleLoginn(false);
+    }
 
-  const ForceSignUp=()=>{
-    storeUserDetails.TooglesignUp(true)
-    storeUserDetails.ToogleLoginn(false)
-  }
+    // const isUserAvailable = storeUserDetails.userDetails.filter(
+    //   (e) => e.userID === loginUserName
+    // );
+    // const isUserPasswordValidate = storeUserDetails.userDetails.filter(
+    //   (e) => e.password === loginUserPassword
+    // );
 
+    // const CurrentUser = storeUserDetails.userDetails.filter(
+    //   (e) => e.userID === loginUserName && e.password === loginUserPassword
+    // );
 
+    // if (isUserAvailable.length === 0) {
+    //   alert("Please signup");
+    //   storeUserDetails.TooglesignUp(true);
+    //   storeUserDetails.ToogleLoginn(false);
+    // } else if (isUserPasswordValidate.length === 0) {
+    //   alert(`kindly enter the correct password ${loginUserName}`);
+    // } else if (CurrentUser.length > 0) {
+    //   storeUserDetails.SetcurrentUser(CurrentUser[0]);
+    //   storeUserDetails.SetIsLoggedIn(true);
+    //   storeUserDetails.ToogleLoginn(false);
+    // }
+    for (const i in storeUserDetails.userDetails) {
+      
+      if (storeUserDetails.userDetails[i].userID === loginUserName) {
+        flag = true;
+        current = storeUserDetails.userDetails[i];
+        if (flag) {
+          flag2 = true;
+        }
+      }
+    }
+
+    if (flag2 === undefined) {
+      alert("please sign up");
+      storeUserDetails.TooglesignUp(true);
+      storeUserDetails.ToogleLoginn(false);
+    }
+    if (flag) {
+      if (
+        current.userID === loginUserName &&
+        current.password === loginUserPassword
+      ) {
+     
+        storeUserDetails.SetIsLoggedIn(true);
+        storeUserDetails.ToogleLoginn(false);
+        storeUserDetails.SetcurrentUser(current)
+      } 
+      if (current.password !== loginUserPassword) {
+        alert(`kindly enter the correct password ${loginUserName}`);
+      }
+    }
+    // storeUserDetails.userDetails.map((e)=>{
+
+    // if(flag){
+    //   if(e.userID === loginUserName){
+    //     console.log('there')
+    //   }
+    // }
+    // else if(!flag){
+    //   alert("Please signup");
+    //     storeUserDetails.TooglesignUp(true);
+    //     storeUserDetails.ToogleLoginn(false);
+    // }
+    // })
+  };
 
   return (
     <div>
@@ -61,11 +122,6 @@ const Login: React.FC = () => {
             </p>
             <p>
               <button onClick={validateUser}>Log in</button>
-              {showSignup ? (
-                <button onClick={ForceSignUp}>
-                  Sign Up
-                </button>
-              ) : null}
             </p>
           </div>
         </div>

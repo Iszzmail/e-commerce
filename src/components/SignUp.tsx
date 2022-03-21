@@ -7,6 +7,7 @@ import { renderHeader } from "../App";
 
 function SignUp() {
   let storeUserDetails = React.useContext(renderHeader);
+  console.log(storeUserDetails)
 
   const [userID, SetUserID] = useState("");
   const [userFirstName, SetUserFirstName] = useState("");
@@ -15,9 +16,9 @@ function SignUp() {
 
   const submit = () => {
     const details = storeUserDetails.userDetails;
-    let isUserExists = false;
 
-   
+
+    
     // details.map((e) => {
     //   if (e.userID === userID) {
     //     isUserExists = true;
@@ -48,6 +49,31 @@ function SignUp() {
       }
     });
 
+    if(userID===''||userFirstName===''||userSecondName===''||userPassword===''){
+
+      if(userID===''||userID.length<=6){
+        if(userID===''){
+        alert('User ID should not be empty')}
+        if(userID.length<=5){
+          alert('user ID should be minimum 5 characters')
+        }
+      
+      }
+     
+      if(userFirstName===''){
+        alert('userFirstName should be empty')
+        return
+      }
+      if(userSecondName===''){
+        alert('userSecondName should be empty')
+        return
+      }
+      if(userPassword===''){
+        alert('userPassword should be empty')
+        return
+      }
+    }
+
     if (test.length === 0) {
       storeUserDetails?.SetuserDetails([
         ...details,
@@ -56,7 +82,7 @@ function SignUp() {
           FirstName: userFirstName,
           SecondName: userSecondName,
           password: userPassword,
-          cart: {},
+          cart: [],
         },
       ]);
       storeUserDetails?.TooglesignUp(false);
@@ -76,7 +102,6 @@ function SignUp() {
           <p>
             <input
               onChange={(event) => {
-
                 SetUserID(event.target.value);
               }}
               type="text"
@@ -86,6 +111,7 @@ function SignUp() {
             />
             <input
               onChange={(event) => {
+
                 SetUserFirstName(event.target.value);
               }}
               type="text"
