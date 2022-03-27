@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import { renderHeader } from "../App";
+import { positions } from "@mui/system";
 
 interface current {
   id: number;
@@ -24,19 +25,47 @@ interface current {
 const CurrentProduct: React.FC<{ data: any }> = (props) => {
   const updateCart = React.useContext(renderHeader);
 
+  const Updatecartinfo = [...updateCart.userDetails];
+
   const AddingToCardNotLoggedIn = () => {
     updateCart?.ToogleLoginn(true);
   };
 
+  // let position: number;
+  // const findUser = () => {
+  //   let name = updateCart.currentUser.FirstName;
+  //   console.log(name);
+  //   updateCart.userDetails.map((e, i) => {
+  //     if (e.FirstName === name) {
+  //       position = i;
+  //     }
+  //   });
+  //   console.log(position);
+  //   let cart = updateCart.currentUser.cart;
+  //   console.log(cart);
+  //   Updatecartinfo[position].cart = [...Updatecartinfo[position].cart, cart];
+  // };
+
   const AddingToCardLoggedIn = () => {
     updateCart?.updatingCard(updateCart.itemsInCart + 1);
     updateCart.SetcurrentUser({
-      userID: updateCart.currentUser.userID,
-      FirstName: updateCart.currentUser.FirstName,
-      SecondName: updateCart.currentUser.SecondName,
-      password: updateCart.currentUser.password,
-      cart: []
-    })
+      ...updateCart.currentUser,
+      cart: [...updateCart.currentUser.cart, props.data],
+    });
+    // updateCart.SetuserDetails(Updatecartinfo)
+    updateCart.SetuserDetails(
+      updateCart.userDetails.map((data) => {
+        if (data.userID === updateCart.currentUser.userID) {
+          return {
+            ...data,
+            cart: [...data.cart, props.data],
+          };
+        } else {
+          return data;
+        }
+      })
+    );
+    console.log(updateCart.userDetails);
   };
 
   return (

@@ -4,16 +4,11 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@mui/material";
 import "../style/Style.css";
-import ImageSlider from "../components/ImageSlider";
-import { useState, useContext } from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import React from "react";
 import { renderHeader } from "../App";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import React from "react";
+import ImageSlider from './ImageSlider'
 
 const Header: React.FC = () => {
   let contextData = React.useContext(renderHeader);
@@ -28,6 +23,7 @@ const Header: React.FC = () => {
    cart: []
  })
  contextData.SetIsLoggedIn(false)
+ contextData.updatingCard(0)
  }
 
   const options = () => {
@@ -37,6 +33,14 @@ const Header: React.FC = () => {
       </div>
     );
   };
+
+  const search=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    contextData.SetSearchedKeyword(e.target.value)
+    contextData.SetshowSearchedProduct(true)
+    contextData.SetOpenProductPage(false)
+  }
+  console.log(contextData.showSearchedProduct)
+ 
   return (
     <>
       {contextData?.signUp && (
@@ -70,7 +74,9 @@ const Header: React.FC = () => {
                 marginBottom: "14px",
               }}
             >
-              <InputBase placeholder="Search for products, brands and more" />
+              <InputBase placeholder="Search for products, brands and more" 
+              onChange={search}
+              />
               <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
@@ -158,6 +164,8 @@ const Header: React.FC = () => {
               More
             </Button>
             <Button
+
+            onClick={()=>contextData.SetShowCartPage(true)}
               sx={{
                 backgroundColor: "white",
                 color: "#2874f0",
@@ -171,7 +179,7 @@ const Header: React.FC = () => {
                 marginBottom: "px",
               }}
             >
-              {contextData && contextData.itemsInCart}
+              {contextData && contextData.currentUser.cart.length}
             </Button>
           </span>
         </div>

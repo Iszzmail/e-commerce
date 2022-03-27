@@ -28,6 +28,14 @@ export const renderHeader = React.createContext<{
   SetcurrentUser: (current:user) => void;
   isLoggedIn: boolean;
   SetIsLoggedIn: (change: boolean) => void;
+  showCartPage:boolean;
+  SetShowCartPage:(change:boolean)=>void;
+  showSearchedProduct:boolean;
+  SetshowSearchedProduct:(change:boolean)=>void
+  searchKeyword:string,
+  SetSearchedKeyword:(change:string)=>void,
+  openProductPage:boolean,
+  SetOpenProductPage:(change:boolean)=>void
 }>({
   imageRenderValue: false,
   imageRenderSetter: (imageRender) => {},
@@ -49,6 +57,14 @@ export const renderHeader = React.createContext<{
   SetcurrentUser: (current) => {},
   isLoggedIn: false,
   SetIsLoggedIn: (change: boolean) => {},
+  showCartPage:false,
+  SetShowCartPage:(change:boolean)=>{},
+  showSearchedProduct:false,
+  SetshowSearchedProduct:(change:boolean)=>{},
+  searchKeyword:'',
+  SetSearchedKeyword:(change:string)=>{} ,
+  openProductPage:false ,
+  SetOpenProductPage:(change:boolean)=>{}
 });
 
 export const App: React.FC = () => {
@@ -66,6 +82,10 @@ export const App: React.FC = () => {
     password: "",
     cart: [],
   });
+  const [showCart,SetShowCart]=useState(false)
+  const[showSearchedProduct,SetshowSearchedProduct]=useState<boolean>(false)
+  const[searchKeyword,SetSearchKeyword]=useState<string>('')
+  const [openProductPage, setopenProductPage] = useState<boolean>(true);
 
   return (
     <renderHeader.Provider
@@ -86,6 +106,14 @@ export const App: React.FC = () => {
         SetcurrentUser: (user) => SetcurrentUser(user),
         isLoggedIn: isLoggedIn,
         SetIsLoggedIn: (change) => SetIsloggedIn(change),
+        showCartPage:showCart,
+        SetShowCartPage:(change)=>SetShowCart(change),
+        showSearchedProduct:showSearchedProduct,
+        SetshowSearchedProduct:(change)=>SetshowSearchedProduct(change),
+        searchKeyword:searchKeyword,
+        SetSearchedKeyword:(change)=>SetSearchKeyword(change),
+        openProductPage:openProductPage,
+        SetOpenProductPage:(change)=>setopenProductPage(change)
       }}
     >
       <Header />
