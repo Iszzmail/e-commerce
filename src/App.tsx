@@ -35,7 +35,7 @@ export const renderHeader = React.createContext<{
   searchKeyword:string,
   SetSearchedKeyword:(change:string)=>void,
   openProductPage:boolean,
-  SetOpenProductPage:(change:boolean)=>void
+  SetOpenProductPage:(change:boolean)=>void,
 }>({
   imageRenderValue: false,
   imageRenderSetter: (imageRender) => {},

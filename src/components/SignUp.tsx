@@ -3,11 +3,9 @@ import "../style/Style.css";
 import { useContext, useState } from "react";
 import { renderHeader } from "../App";
 
-
-
 function SignUp() {
   let storeUserDetails = React.useContext(renderHeader);
-  console.log(storeUserDetails)
+  console.log(storeUserDetails);
 
   const [userID, SetUserID] = useState("");
   const [userFirstName, SetUserFirstName] = useState("");
@@ -17,62 +15,53 @@ function SignUp() {
   const submit = () => {
     const details = storeUserDetails.userDetails;
 
-
-    
-    // details.map((e) => {
-    //   if (e.userID === userID) {
-    //     isUserExists = true;
-    //     return;
-    //   }
-    // });
-
-    // if(isUserExists){
-    //   alert('user ALready exist')
-    // }else {
-    //   storeUserDetails?.SetuserDetails([
-    //     ...details,
-    //     {
-    //       userID: userID,
-    //       FirstName: userFirstName,
-    //       SecondName: userSecondName,
-    //       password: userPassword,
-    //       cart: {},
-    //     },
-    //   ]);
-    //   storeUserDetails?.TooglesignUp(false);
-
-    // }
-
     const test = details.filter((e) => {
       if (userID === e.userID) {
         return true;
       }
     });
 
-    if(userID===''||userFirstName===''||userSecondName===''||userPassword===''){
-
-      if(userID===''||userID.length<=6){
-        if(userID===''){
-        alert('User ID should not be empty')}
-        if(userID.length<=5){
-          alert('user ID should be minimum 5 characters')
+    if (
+      userID === "" ||
+      userFirstName === "" ||
+      userSecondName === "" ||
+      userPassword === ""
+    ) {
+      if (userID === "" || userID.length <= 6) {
+        if (userID === "") {
+          alert("User ID should not be empty");
+          return;
         }
+        if (userID.length <= 5) {
+          alert("user ID should be minimum 5 characters");
+          return;
+        }
+      }
+
+      if (userFirstName === "") {
+        alert("userFirstName should not be empty");
+        return;
+      }
       
+    if (parseInt(userFirstName) === NaN ||typeof parseInt(userFirstName) === 'number' ) {
+      alert("Enter only letters");
+      return;
+    }
+      if (userSecondName === "") {
+        alert("userSecondName should not be empty");
+        return;
       }
-     
-      if(userFirstName===''){
-        alert('userFirstName should be empty')
-        return
+      if(parseInt(userSecondName) === NaN ||typeof parseInt(userFirstName) === 'number' ) {
+        alert("Enter only letters");
+        return;
       }
-      if(userSecondName===''){
-        alert('userSecondName should be empty')
-        return
-      }
-      if(userPassword===''){
-        alert('userPassword should be empty')
-        return
+      if (userPassword === "") {
+        alert("userPassword should not be empty");
+        return;
       }
     }
+
+    
 
     if (test.length === 0) {
       storeUserDetails?.SetuserDetails([
@@ -86,18 +75,24 @@ function SignUp() {
         },
       ]);
       storeUserDetails?.TooglesignUp(false);
+      storeUserDetails.SetIsLoggedIn(true);
+      storeUserDetails.SetcurrentUser({
+        userID: userID,
+        FirstName: userFirstName,
+        SecondName: userSecondName,
+        password: userPassword,
+        cart: [],
+      });
     } else {
       alert(` User ID ${userID} is already taken`);
     }
-
   };
-
 
   return (
     <>
       <div id="login-form-wrap">
         <h2>Sign Up</h2>
-        <button onClick={()=>storeUserDetails.TooglesignUp(false)}>x</button>
+        <button onClick={() => storeUserDetails.TooglesignUp(false)}>x</button>
         <div id="login-form">
           <p>
             <input
@@ -111,7 +106,6 @@ function SignUp() {
             />
             <input
               onChange={(event) => {
-
                 SetUserFirstName(event.target.value);
               }}
               type="text"

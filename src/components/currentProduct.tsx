@@ -8,7 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import { renderHeader } from "../App";
-import { positions } from "@mui/system";
 
 interface current {
   id: number;
@@ -88,7 +87,6 @@ const CurrentProduct: React.FC<{ data: any }> = (props) => {
           Add To Cart
         </Button>
       )}
-      <button>Buy</button>
       <span className={"currentProductCategory"}>{props.data.category}</span>
       <span className={"currentProductName"}>
         {props.data.title}{" "}

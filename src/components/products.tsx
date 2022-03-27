@@ -4,6 +4,7 @@ import CurrentProduct from "./currentProduct";
 import { renderHeader } from "../App";
 import { FaSlidersH } from "react-icons/fa";
 import ProductRender from "./productRender";
+import { Button } from "@mui/material";
 
 export interface Product {
   id: number;
@@ -100,7 +101,7 @@ useEffect(()=>{
           })
         ) : contextData.showCartPage ? (
           <div>
-            <button onClick={()=>contextData.SetShowCartPage(false)} >back</button>
+            <Button onClick={()=>contextData.SetShowCartPage(false)} >back</Button>
             {renderUserCartDetails()}</div>
         ) : contextData.showSearchedProduct ? (
           <div>
@@ -108,9 +109,9 @@ useEffect(()=>{
           </div>
         ) : (
           <div>
-            <button onClick={() => contextData.SetOpenProductPage(true)}>
+            <Button onClick={() => contextData.SetOpenProductPage(true)}>
               Back
-            </button>
+            </Button>
             <CurrentProduct data={currentProductrender} />
           </div>
         )}

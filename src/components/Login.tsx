@@ -1,6 +1,5 @@
 import { renderHeader } from "../App";
 import React, { useState } from "react";
-import { positions } from "@mui/system";
 import { Product } from "./products";
 
 const Login: React.FC = () => {
@@ -18,34 +17,6 @@ const Login: React.FC = () => {
     cart: Array<Product>;
   };
   const validateUser = () => {
-    if (storeUserDetails.userDetails.length === 0) {
-      alert("Please signup");
-      storeUserDetails.TooglesignUp(true);
-      storeUserDetails.ToogleLoginn(false);
-    }
-
-    // const isUserAvailable = storeUserDetails.userDetails.filter(
-    //   (e) => e.userID === loginUserName
-    // );
-    // const isUserPasswordValidate = storeUserDetails.userDetails.filter(
-    //   (e) => e.password === loginUserPassword
-    // );
-
-    // const CurrentUser = storeUserDetails.userDetails.filter(
-    //   (e) => e.userID === loginUserName && e.password === loginUserPassword
-    // );
-
-    // if (isUserAvailable.length === 0) {
-    //   alert("Please signup");
-    //   storeUserDetails.TooglesignUp(true);
-    //   storeUserDetails.ToogleLoginn(false);
-    // } else if (isUserPasswordValidate.length === 0) {
-    //   alert(`kindly enter the correct password ${loginUserName}`);
-    // } else if (CurrentUser.length > 0) {
-    //   storeUserDetails.SetcurrentUser(CurrentUser[0]);
-    //   storeUserDetails.SetIsLoggedIn(true);
-    //   storeUserDetails.ToogleLoginn(false);
-    // }
     for (const i in storeUserDetails.userDetails) {
       
       if (storeUserDetails.userDetails[i].userID === loginUserName) {
@@ -59,6 +30,7 @@ const Login: React.FC = () => {
 
     if (flag2 === undefined) {
       alert("please sign up");
+      console.log('ppp')
       storeUserDetails.TooglesignUp(true);
       storeUserDetails.ToogleLoginn(false);
     }
@@ -76,19 +48,6 @@ const Login: React.FC = () => {
         alert(`kindly enter the correct password ${loginUserName}`);
       }
     }
-    // storeUserDetails.userDetails.map((e)=>{
-
-    // if(flag){
-    //   if(e.userID === loginUserName){
-    //     console.log('there')
-    //   }
-    // }
-    // else if(!flag){
-    //   alert("Please signup");
-    //     storeUserDetails.TooglesignUp(true);
-    //     storeUserDetails.ToogleLoginn(false);
-    // }
-    // })
   };
 
   return (
