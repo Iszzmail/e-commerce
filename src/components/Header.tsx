@@ -57,8 +57,9 @@ const Header: React.FC = () => {
       
         <div className={"outline"}>
           <span>
+
             <img
-              className={"brandImageSize"}
+              className={"brandImageSize"} onClick={()=>contextData.SetOpenProductPage(true)}
               src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
             ></img>
           </span>
@@ -74,12 +75,10 @@ const Header: React.FC = () => {
                 marginBottom: "14px",
               }}
             >
-              <InputBase placeholder="Search for products, brands and more" 
+              <InputBase placeholder="Search for mens, womens and more" 
               onChange={search}
               />
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
+             
             </Paper>
           </span>
          {contextData.isLoggedIn===false? <>

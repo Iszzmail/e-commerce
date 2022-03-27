@@ -3,6 +3,7 @@ import "../style/Style.css";
 import CurrentProduct from "./currentProduct";
 import { renderHeader } from "../App";
 import { FaSlidersH } from "react-icons/fa";
+import ProductRender from "./productRender";
 
 export interface Product {
   id: number;
@@ -53,15 +54,13 @@ const Products: React.FC = () => {
     console.log(productDetails)
     productDetails?.map((e) => {
               
-      if(e.title.includes(contextData.searchKeyword)){
+      if(e.title.toLowerCase().includes(contextData.searchKeyword)){
        return arr.push(e)
       }
       
     })
    return  arr.map((e:Product)=>{
-  return <div>
-  <img src={e.image}></img>
-  </div>
+  return  <ProductRender productDetails={e} open={open}/>
 })
   };
 
@@ -96,16 +95,7 @@ useEffect(()=>{
           productDetails &&
           productDetails.map((e, i) => {
             return (
-              <span key={i} className={"box"} onClick={() => open(e)}>
-                <img
-                className={'lazy'}
-                  style={{ width: "185px", display: "inline" }}
-                data-src={e.image}
-                />
-                <h3 className={"productsName"}>{e.title.slice(0, 10)}</h3>
-                <span className={"productsName"}>${e.price}</span>
-                <h3 className={"productsName"}>Rating :{e.rating.rate}</h3>
-              </span>
+              <ProductRender productDetails={e} open={open}/>
             );
           })
         ) : contextData.showCartPage ? (
