@@ -5,6 +5,7 @@ import { renderHeader } from "../App";
 import { FaSlidersH } from "react-icons/fa";
 import ProductRender from "./productRender";
 import { Button } from "@mui/material";
+import {productData} from './Data'
 
 export interface Product {
   id: number;
@@ -13,7 +14,7 @@ export interface Product {
   description: string;
   rating: {
     rate: number;
-    count: string;
+    count: number;
   };
   title: string;
 }
@@ -30,14 +31,15 @@ const Products: React.FC = () => {
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((res) => SetproductDetails(res));
+      .then((res) => SetproductDetails(res)).finally(()=>SetproductDetails(productData));
   }, []);
 
   const open = (data: any) => {
     contextData.SetOpenProductPage(false);
     let aa = Object.assign(data);
     SetcurrentProductrender(aa);
-    contextData?.imageRenderSetter(false);
+    contextData.imageRenderSetter(false);
+    contextData.SetshowSearchedProduct(false)
   };
 
   const renderUserCartDetails = () => {
@@ -78,7 +80,7 @@ const imageObserver = (element:any) => {
 }
 
 useEffect(()=>{
-  if(contextData.openProductPage&&productDetails){
+  if((contextData.openProductPage ||contextData.showSearchedProduct)&&productDetails){
     loading=document.querySelectorAll('.lazy')
     if(loading){
       loading.forEach((value:any)=>{

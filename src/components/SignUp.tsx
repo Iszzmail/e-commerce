@@ -43,18 +43,11 @@ function SignUp() {
         return;
       }
       
-    if (parseInt(userFirstName) === NaN ||typeof parseInt(userFirstName) === 'number' ) {
-      alert("Enter only letters");
-      return;
-    }
       if (userSecondName === "") {
         alert("userSecondName should not be empty");
         return;
       }
-      if(parseInt(userSecondName) === NaN ||typeof parseInt(userFirstName) === 'number' ) {
-        alert("Enter only letters");
-        return;
-      }
+     
       if (userPassword === "") {
         alert("userPassword should not be empty");
         return;
