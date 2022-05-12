@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { Application } from "./components/form";
 import Header from "./components/Header";
 import Products, { Product } from "./components/products";
 import "./style/Style.css";
@@ -36,6 +37,8 @@ export const renderHeader = React.createContext<{
   SetSearchedKeyword:(change:string)=>void,
   openProductPage:boolean,
   SetOpenProductPage:(change:boolean)=>void,
+  openFormPage:boolean,
+  SetOpenFormPage:(change:boolean)=>void
 }>({
   imageRenderValue: false,
   imageRenderSetter: (imageRender) => {},
@@ -64,7 +67,9 @@ export const renderHeader = React.createContext<{
   searchKeyword:'',
   SetSearchedKeyword:(change:string)=>{} ,
   openProductPage:false ,
-  SetOpenProductPage:(change:boolean)=>{}
+  SetOpenProductPage:(change:boolean)=>{},
+  openFormPage:false,
+  SetOpenFormPage:(change:boolean)=>{}
 });
 
 export const App: React.FC = () => {
@@ -86,38 +91,42 @@ export const App: React.FC = () => {
   const[showSearchedProduct,SetshowSearchedProduct]=useState<boolean>(false)
   const[searchKeyword,SetSearchKeyword]=useState<string>('')
   const [openProductPage, setopenProductPage] = useState<boolean>(true);
+  const [openFormPage,setopenFormPage]=useState<boolean>(false)
 
   return (
-    <renderHeader.Provider
-      //create a function to avoid repetation
-      value={{
-        imageRenderValue: imageRender, // to display the value
-        imageRenderSetter: (imageRender: boolean) =>
-          SetimageRender(imageRender), // to change the value
-        itemsInCart: cart,
-        updatingCard: (num) => Setcart(num),
-        signUp: ToogleSignUp,
-        TooglesignUp: SetToogleSignUp,
-        userDetails: users,
-        SetuserDetails: (details) => Setusers(details),
-        login: ToogleLogIn,
-        ToogleLoginn: (details) => SetToogleLogIn(details),
-        currentUser: currentUser,
-        SetcurrentUser: (user) => SetcurrentUser(user),
-        isLoggedIn: isLoggedIn,
-        SetIsLoggedIn: (change) => SetIsloggedIn(change),
-        showCartPage:showCart,
-        SetShowCartPage:(change)=>SetShowCart(change),
-        showSearchedProduct:showSearchedProduct,
-        SetshowSearchedProduct:(change)=>SetshowSearchedProduct(change),
-        searchKeyword:searchKeyword,
-        SetSearchedKeyword:(change)=>SetSearchKeyword(change),
-        openProductPage:openProductPage,
-        SetOpenProductPage:(change)=>setopenProductPage(change)
-      }}
-    >
-      <Header />
-      <Products />
-    </renderHeader.Provider>
+    <Application/>
+    // <renderHeader.Provider
+    //   //create a function to avoid repetation
+    //   value={{
+    //     imageRenderValue: imageRender, // to display the value
+    //     imageRenderSetter: (imageRender: boolean) =>
+    //       SetimageRender(imageRender), // to change the value
+    //     itemsInCart: cart,
+    //     updatingCard: (num) => Setcart(num),
+    //     signUp: ToogleSignUp,
+    //     TooglesignUp: SetToogleSignUp,
+    //     userDetails: users,
+    //     SetuserDetails: (details) => Setusers(details),
+    //     login: ToogleLogIn,
+    //     ToogleLoginn: (details) => SetToogleLogIn(details),
+    //     currentUser: currentUser,
+    //     SetcurrentUser: (user) => SetcurrentUser(user),
+    //     isLoggedIn: isLoggedIn,
+    //     SetIsLoggedIn: (change) => SetIsloggedIn(change),
+    //     showCartPage:showCart,
+    //     SetShowCartPage:(change)=>SetShowCart(change),
+    //     showSearchedProduct:showSearchedProduct,
+    //     SetshowSearchedProduct:(change)=>SetshowSearchedProduct(change),
+    //     searchKeyword:searchKeyword,
+    //     SetSearchedKeyword:(change)=>SetSearchKeyword(change),
+    //     openProductPage:openProductPage,
+    //     SetOpenProductPage:(change)=>setopenProductPage(change),
+    //     openFormPage:openFormPage,
+    //     SetOpenFormPage:setopenFormPage
+    //   }}
+    // >
+    //   <Header />
+    //   <Products />
+    // </renderHeader.Provider>
   );
 };

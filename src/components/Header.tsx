@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import React from "react";
 import ImageSlider from "./ImageSlider";
-
+import { Application } from "./form";
 const Header: React.FC = () => {
   let contextData = React.useContext(renderHeader);
 
@@ -31,6 +31,7 @@ const Header: React.FC = () => {
     contextData.SetshowSearchedProduct(true);
     contextData.SetOpenProductPage(false);
   };
+  
   console.log(contextData.showSearchedProduct);
 
   return (
@@ -157,6 +158,23 @@ const Header: React.FC = () => {
               }}
             >
               {contextData && contextData.currentUser.cart.length}
+            </Button>
+          </span>
+          <span>
+            <Button onClick={()=>contextData.SetOpenFormPage(true)}
+            sx={{
+              backgroundColor: "white",
+              color: "#2874f0",
+              height: "46px",
+              fontWeight: "500",
+              cursor: "pointer",
+              borderRadius: "2px",
+              padding: "5px 40px",
+              border: "1px solid #dbdbdb",
+              marginLeft: "11px",
+              marginBottom: "px",
+            }}>
+                Form
             </Button>
           </span>
         </div>

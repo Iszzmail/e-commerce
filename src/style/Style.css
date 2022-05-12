@@ -1,4 +1,4 @@
-.outline {
+/* .outline {
   width: 100%;
   height: 90px;
   background-color: rgb(40, 116, 240);
@@ -300,4 +300,61 @@ input[type="submit"]:hover {
   width: 100%;
   padding: 10px 0;
   border-radius: 0 0 4px 4px;
+} */
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black');
+
+
+
+
+
+html, body{
+  height: 100%;
 }
+  
+body{
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Helvetica Neue;
+} 
+h1{
+  font-size: 4em;
+  font-weight: bold; 
+  color: darkslategray;
+  font-family: 'Archivo Black';
+}
+.form{
+  height: 35%;
+  border: 5px solid bluegray;
+  border-radius: 20%;
+  margin-top: 1em;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: lightgray;
+  display: flex;
+  padding: 45px;
+}
+.inputcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+button{
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  
+}
+ 
