@@ -65,7 +65,7 @@ export class Application extends React.Component {
             <input filter="[^a-zA-Z ]" name="firstName" placeholder="First Name" onChange={this.inputCheck} />
             <input filter="[^a-zA-Z ]" name="lastName" placeholder="Last Name" onChange={this.inputCheck} />
             <input filter="[^0-9]" maxLength="10" name="phone" placeholder="Phone Number" onChange={this.inputCheck} />
-            <input placeholder="Email Address" onChange={(e) => {this.setState({email:e.target.value})}} />
+            <input placeholder="Email Address" name="email" onChange={(e) => {this.setState({email:e.target.value})}} />
             
             {/* Below is the submit button. Using the onClick event handler, it changes the value of this.state.display to false, which would trigger the ternary in the render method to display the user's info instead of this form*/}
             <button onClick={this.submitCheck}>Submit</button>
