@@ -1,1 +1,1 @@
-git add . && git commit -m 'asd' && git push origin formvalidate
+git add . && git commit -m 'asd' && git push --force origin formvalidate
