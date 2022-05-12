@@ -54,7 +54,7 @@ export class Application extends React.Component {
         
       return (
 
-        <div className="form">
+        <form className="form">
             
           <div className="header">
             <h1>Welcome!</h1>
@@ -70,7 +70,7 @@ export class Application extends React.Component {
             {/* Below is the submit button. Using the onClick event handler, it changes the value of this.state.display to false, which would trigger the ternary in the render method to display the user's info instead of this form*/}
             <button onClick={this.submitCheck}>Submit</button>
           </div>
-        </div>
+        </form>
       );
     }
     
