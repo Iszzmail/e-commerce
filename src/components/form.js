@@ -1,5 +1,5 @@
 import React from "react";
-import '../style/tyle.css'
+import '../style/Style.css'
 
 
 export class Application extends React.Component {
