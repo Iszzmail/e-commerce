@@ -54,7 +54,7 @@ export class Application extends React.Component {
         
       return (
 
-        <form className="form">
+        <form id="form">
             
           <div className="header">
             <h1>Welcome!</h1>
